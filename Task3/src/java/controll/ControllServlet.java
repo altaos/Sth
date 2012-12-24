@@ -8,7 +8,9 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.jdbc.JdbcPooledConnectionSource;
+import com.j256.ormlite.stmt.PreparedQuery;
 import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.SelectArg;
 import com.j256.ormlite.stmt.Where;
 import database.Player;
 import java.io.IOException;
@@ -60,19 +62,24 @@ public class ControllServlet extends HttpServlet
             
             if (userPath.equals("/autorization"))
             {
-                //QueryBuilder<Player, Integer> queryBuilder = playerDao.queryBuilder();
+                //String att = request.getParameterValues("login")[0];
+                    /*QueryBuilder<Player, Integer> queryBuilder = playerDao.queryBuilder();
+                SelectArg selectArg = new SelectArg();
+                queryBuilder.where().like(Player.NAME_FIELD_NAME, selectArg);
+                PreparedQuery<Player> preparedQuery = queryBuilder.prepare();
+                selectArg.setValue(request.getParameterValues("login")[0]);
+                List<Player> list = playerDao.query(preparedQuery);*/
+                
                 List<Player> player = playerDao.queryBuilder().where()
-                        .eq(Player.NAME_FIELD_NAME, request.getAttribute("Login"))
+                        .eq(Player.NAME_FIELD_NAME, request.getParameterValues("login")[0])
                         .and()
-                        .eq(Player.PASSWORD_FIELD_NAME, request.getAttribute("Password")).query();
+                        .eq(Player.PASSWORD_FIELD_NAME, request.getParameterValues("pass")[0]).query();
                 
                 if(player.size() == 1)
                 {
                     userPath = "/registration";
                     url = "/WEB-INF/view" + userPath + ".jsp";
                 }
-                url = "/WEB-INF/view" + "/registration" + ".jsp";
-                //TODO: работа с бд
             } 
             else if(userPath.equals("/registration"))
             {
@@ -91,6 +98,7 @@ public class ControllServlet extends HttpServlet
             
             try
             {
+                //response.
                 request.getRequestDispatcher(url).forward(request, response);
             } catch (Exception ex)
             {

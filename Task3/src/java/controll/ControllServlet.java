@@ -55,7 +55,7 @@ public class ControllServlet extends HttpServlet
             JdbcConnectionSource connectionSource;
             Dao<Player,Integer> playerDao;
             
-            connectionSource = new JdbcPooledConnectionSource("jdbc:mysql://localhost:3306/checkers", "root", "");
+            connectionSource = new JdbcConnectionSource("jdbc:mysql://localhost:3306/checkers", "root", "");
             playerDao = DaoManager.createDao(connectionSource, Player.class);
             
             if (userPath.equals("/autorization"))
@@ -71,6 +71,7 @@ public class ControllServlet extends HttpServlet
                     userPath = "/registration";
                     url = "/WEB-INF/view" + userPath + ".jsp";
                 }
+                url = "/WEB-INF/view" + "/registration" + ".jsp";
                 //TODO: работа с бд
             } 
             else if(userPath.equals("/registration"))

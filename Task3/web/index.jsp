@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +15,7 @@
     </head>
     <body>
         <div><img src="images/logo.png" alt="Logo" id="image"></div>
+        <c:out value="${loc}"/><br><br>
         <form method="post">
             Имя пользователя <input type="text" name="login" value=""><br><br>
             Пароль&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="pass" value=""><br>

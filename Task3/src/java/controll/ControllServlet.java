@@ -80,6 +80,11 @@ public class ControllServlet extends HttpServlet
                     userPath = "/registration";
                     url = "/WEB-INF/view" + userPath + ".jsp";
                 }
+                else
+                {
+                    request.setAttribute("loc", "Wrong login or password");
+                    url = "index.jsp";
+                }
             } 
             else if(userPath.equals("/registration"))
             {
@@ -98,7 +103,7 @@ public class ControllServlet extends HttpServlet
             
             try
             {
-                //response.
+                //request.setAttribute("par", "Hahaha");
                 request.getRequestDispatcher(url).forward(request, response);
             } catch (Exception ex)
             {

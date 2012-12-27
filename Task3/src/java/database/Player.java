@@ -20,10 +20,11 @@ public class Player
     public static final String ID_FIELD_NAME = "id";
     public static final String WON_FIELD_NAME = "won_games_count";
     public static final String LOST_FIELD_NAME = "lost_games_count";
+    public static final String ID_COUNTRY = "id_country";
     
     public Player(){ }
     
-    public Player(String name, String password, String actual_name,String email)
+    public Player(String name, String password, String actual_name,String email, int country_id)
     {
         this.name = name;
         this.password = password;
@@ -31,6 +32,7 @@ public class Player
         this.email = email;
         this.won_games_count = 0;
         this.lost_games_count = 0;
+        this.id_country = country_id;
     }
     
     @Id
@@ -54,6 +56,9 @@ public class Player
     
     @Column(nullable = false, columnDefinition=LOST_FIELD_NAME)
     private int lost_games_count;
+    
+    @Column(nullable = false, columnDefinition=ID_COUNTRY)
+    private int id_country;
 
     /**
      * @return the id
@@ -109,6 +114,46 @@ public class Player
     public int getLost_games_count()
     {
         return lost_games_count;
+    }
+
+    /**
+     * @return the country_id
+     */
+    public int getCountry_id()
+    {
+        return id_country;
+    }
+
+    /**
+     * @param password the password to set
+     */
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    /**
+     * @param actual_name the actual_name to set
+     */
+    public void setActual_name(String actual_name)
+    {
+        this.actual_name = actual_name;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email)
+    {
+        this.email = email;
+    }
+
+    /**
+     * @param id_country the id_country to set
+     */
+    public void setId_country(int id_country)
+    {
+        this.id_country = id_country;
     }
     
     

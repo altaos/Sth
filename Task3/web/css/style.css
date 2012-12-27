@@ -17,7 +17,7 @@ body
 {
     background-color: rgba(253, 245, 230, 0.7); 
     width: 400px; 
-    height: 260px;
+    height: 300px;
     
     border-right-style: solid;
     border-left-style: solid;
@@ -31,4 +31,31 @@ body
     border-left-color: #ffdbd0;
     border-bottom-color: #ffdbd0;
     border-top-color: #ffdbd0;
+}
+
+#form
+{
+    margin-left: 80px;
+}
+
+#h1
+{
+    margin-left: 50px;
+}
+
+#table
+{
+    margin-left: 100px;
+}
+
+#buttonReg
+{
+    margin-left: 75px; 
+    margin-top: 30px;
+}
+
+#buttonCancel
+{
+    margin-left: 5px; 
+    margin-top: 30px;
 }

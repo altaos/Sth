@@ -1,0 +1,28 @@
+<%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/playerinfo.css">
+        <title>Рейтинг</title>
+    </head>
+    <body>
+        <div id="header">
+            <div id="headerBar">
+
+                <div class="headerButton">
+                    <a href="exit">Выход</a>
+                </div>
+
+                <div class="headerButton">
+                    <a href="edit"><%=request.getAttribute("player_name")%></a>
+                </div>
+            </div>
+
+            <a href="images/logo.png">
+                <img src="images/logo.png" alt="logo" id="logo">
+            </a>
+
+            <img src="#" id="logoText" alt="Checkers">
+        </div>
+        <div id="main">

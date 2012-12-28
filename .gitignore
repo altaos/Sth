@@ -4,3 +4,4 @@
 *.jar
 *.war
 *.ear
+/Task3/dist/

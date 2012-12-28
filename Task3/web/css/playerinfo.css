@@ -1,0 +1,122 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    margin: 0px auto;
+    height: available;
+}
+
+#main {
+    background: #eee;
+    height: available;
+    width: 850px;
+    position: relative;
+    margin: 0 auto;
+}
+
+#header {
+    height: 100px;
+    position: relative;
+    width: 100%;
+    background: #aaa;
+}
+
+#logo {
+    height: 100px;
+    width: 100px;
+    float: left;
+    margin-left: 0px;
+    margin-top: -50px;
+    text-align: left;
+}
+
+#logoText {
+    margin: 0 0 0 70px;
+    font-family: 'Checkers', Courier, monospace;
+    font-size: 50px;
+    color: #333;
+    float: left;
+}
+
+#headerBar {
+    height: 50px;
+    width: 100%;
+    float: right;
+    background: #ccc;
+}
+
+.headerButton {
+    width: 100px;
+    margin-top: 0px;
+    margin-left: 4px;
+    font-size: 12px;
+    float: right;
+    line-height: 25px;
+    background: #aaa;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: normal;
+    color: #000000;
+    text-decoration: none;
+}
+
+#footer {
+    clear: both;
+    height: 50px;
+    width: 100%;
+    background: #aaa;
+    
+    vertical-align: bottom;
+    position: fixed;
+    bottom: 0px;
+    left: 0px;
+}
+
+.table{
+    width: 100%;
+    height: auto;
+    float: left;
+    clear: right;
+    border-width: 0;
+    border-collapse: collapse;
+}
+.table tr:nth-child(2n+1){
+    background: #aaa;
+}
+
+.table tr:nth-child(2n){
+    background: #ddd;
+}
+#tabBar {
+}
+.selectedTab {
+    width: 50%;
+    margin-top: 20px;
+    font-size: 12px;
+    clear: left;
+    float: left;
+    line-height: 25px;
+    background: #aaa;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: normal;
+    color: #000000;
+    text-decoration: none;
+}
+
+.tab {
+    width: 50%;
+    margin-top: 20px;
+    font-size: 12px;
+    float: right;
+    clear: right;
+    line-height: 25px;
+    background: #ddd;
+    font-family: Verdana,Arial,Helvetica,sans-serif;
+    font-weight: normal;
+    font-variant: normal;
+    font-style: normal;
+    color: #000000;
+    text-decoration: none;
+}

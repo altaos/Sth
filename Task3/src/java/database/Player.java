@@ -111,5 +111,14 @@ public class Player
         return lost_games_count;
     }
     
-    
+    public String[] toStrings()
+    {
+        String[] result = new String[5];
+        result[0] = "Undefined";
+        result[1] = name;
+        result[2] = ((Integer)(won_games_count-lost_games_count)).toString();
+        result[3] = ((Integer)won_games_count).toString();
+        result[4] = ((Integer)lost_games_count).toString();
+        return result;        
+    }
 }

@@ -77,8 +77,8 @@ public class ControllServlet extends HttpServlet
                 
                 if(player.size() == 1)
                 {
-                    userPath = "/registration";
-                    url = "/WEB-INF/view" + userPath + ".jsp";
+                    userPath = "/country";
+                    url = "/country";
                 }
                 else
                 {

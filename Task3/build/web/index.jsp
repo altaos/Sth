@@ -16,9 +16,9 @@
     <body>
         <div><img src="images/logo.png" alt="Logo" id="image"></div>
         <c:out value="${loc}"/><br><br>
-        <form method="post">
-            Имя пользователя <input type="text" name="login" value=""><br><br>
-            Пароль&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="text" name="pass" value=""><br>
+        <form method="post" style="margin-left: 45px">
+            Login <input type="text" name="login" value="" id="log_edit"><br><br>
+            Password<input type="password" name="pass" value=""><br>
             <input type="submit" formaction="autorization" name="Autorization" value="Login" style="margin-left: 75px; margin-top: 30px"> 
             <input type="submit" formaction="registration" name="Registration" value="Registration" style="margin-left: 5px; margin-top: 30px">
         </form>

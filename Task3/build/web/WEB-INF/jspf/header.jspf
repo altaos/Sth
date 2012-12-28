@@ -23,6 +23,6 @@
                 <img src="images/logo.png" alt="logo" id="logo">
             </a>
 
-            <img src="#" id="logoText" alt="Checkers">
+                <div id="logoText"> Checkers</div>
         </div>
         <div id="main">

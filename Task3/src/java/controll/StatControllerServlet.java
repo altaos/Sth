@@ -7,6 +7,7 @@ package controll;
 import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.dao.DaoManager;
 import com.j256.ormlite.jdbc.JdbcConnectionSource;
+import database.Country;
 import database.Player;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -85,13 +86,16 @@ public class StatControllerServlet extends HttpServlet
         
         JdbcConnectionSource connectionSource = null;
         Dao<Player, Integer> playerDao;
+        Dao<Country, Integer> countryDao;
         
         try
         {
             connectionSource = new JdbcConnectionSource("jdbc:mysql://localhost:3306/checkers", "root", "");
             playerDao = DaoManager.createDao(connectionSource, Player.class);
-            int player_id = 3; // TODO: Получить из сессии
+            countryDao = DaoManager.createDao(connectionSource, Country.class);
+            int player_id = (Integer)request.getSession().getAttribute("user_id");
             Player player = playerDao.queryForId(player_id);
+            String country_name = countryDao.queryForId(player.getCountry_id()).getName();
             
             if (userPath.equals("/world"))
             {
@@ -99,11 +103,13 @@ public class StatControllerServlet extends HttpServlet
                 List<String[]> rows = new ArrayList<String[]>();
                 for (Player p : players)
                 {
-                    rows.add(p.toStrings());
+                    String[] row = p.toStrings();
+                    row[0] = countryDao.queryForId(p.getCountry_id()).getName();
+                    rows.add(row);
                 }
                 request.setAttribute("players", rows);
                 request.setAttribute("player_name", player.getName());
-                request.setAttribute("player_country", "Лихтенштейн"); // TODO: узнать, получив из БД по id
+                request.setAttribute("player_country", country_name); 
                 url = "/WEB-INF/view" + userPath + ".jsp";
             }
             else if (userPath.equals("/country"))
@@ -112,20 +118,25 @@ public class StatControllerServlet extends HttpServlet
                 List<String[]> rows = new ArrayList<String[]>();
                 for (Player p : players)
                 {
-                    rows.add(p.toStrings());
+                    String[] row = p.toStrings();
+                    row[0] = countryDao.queryForId(p.getCountry_id()).getName();
+                    rows.add(row);
                 }
                 request.setAttribute("players", rows);
                 request.setAttribute("player_name", player.getName());
-                request.setAttribute("player_country", "Лихтенштейн"); // TODO: узнать, получив из БД по id
+                request.setAttribute("player_country", country_name);
                 url = "/WEB-INF/view" + userPath + ".jsp";
             }
             else if (userPath.equals("/edit"))
             {
-                url = "/edit";
+                request.setAttribute("name", player.getActual_name());
+                request.setAttribute("email", player.getEmail());
+                request.setAttribute("country", country_name);
+                url = "/WEB-INF/view/changeInfo.jsp";
             }
             else if (userPath.equals("/exit"))
             {
-                // TODO: Заверишть сессию
+                request.getSession().invalidate();
                 url = "index.jsp";
             }
             
@@ -133,8 +144,10 @@ public class StatControllerServlet extends HttpServlet
         }
         catch (SQLException ex)
         {
-            response.getWriter().println("MySQL error: ");
-            ex.printStackTrace(response.getWriter());
+            //response.getWriter().println("MySQL error: ");
+            //ex.printStackTrace(response.getWriter());
+            request.setAttribute("error_text", ex.getMessage());
+            request.getRequestDispatcher("/WEB-INF/view/error.jsp").forward(request, response);
         }
         finally
         {

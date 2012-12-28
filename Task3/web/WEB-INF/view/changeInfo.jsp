@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,34 +14,34 @@
         <title>Change Info</title>
     </head>
     <body>
-        <<div id="regform">
+        <div id="regform">
             <form method="post" style="margin-left: 80px">
-                <h1 style="margin-left: 50px">Welcome!</h1>
+                <h1 style="margin-left: 50px">Change profile</h1>
                 <table style="margin-left: 15px">
                     <tbody>
                         <tr> 
                             <c:out value="${wrong_pass}"/><br>
                             <td>Name</td> 
-                            <td><input type="text" name="Name" value=""></td> 
+                            <td><input type="text" name="Name" value=<%=request.getAttribute("name")%>></td> 
                         </tr>
                         <tr> 
                             <td>Email</td> 
-                            <td><input type="text" name="Email" value=""></td> 
+                            <td><input type="text" name="Email" value=<%=request.getAttribute("email")%>></td> 
                         </tr>
                         <tr> 
                             <tr> 
                             <td>Old password</td> 
-                            <td><input type="text" name="Password_old" value=""></td>
+                            <td><input type="password" name="Password_old" value=""></td>
                         </tr> 
                         </tr>
                         <tr> 
                             <td>New password</td> 
-                            <td><input type="text" name="Password_new" value=""></td>
+                            <td><input type="password" name="Password_new" value=""></td>
                         </tr>
                         <tr> 
                             <td>Country</td> 
                             <td><select name="Country">
-                                    <option selected value="Россия">Россия</option>
+                                    <option value="Россия">Россия</option>
                                     <option value="Австрия">Австрия</option>
                                     <option value="Белоруссия">Белоруссия</option>
                                     <option value="Болгария">Болгария</option>
@@ -60,6 +61,7 @@
                                     <option value="Франция">Франция</option>
                                     <option value="Южная Корея">Южная Корея</option>
                                     <option value="Япония">Япония</option>
+                                    <option selected value=<%=request.getAttribute("country")%>><%=request.getAttribute("country")%></option>
                                 </select></td>
                         </tr>
                     </tbody>

@@ -124,7 +124,7 @@ public class ControllServlet extends HttpServlet
                     url = "/registration";
                 }
             }
-            else if (userPath.equals("/sendReg"))
+            else if (userPath.equals("/saveChanges"))
             {
                 Player pl = playerDao.queryForId((Integer) request.getSession().getAttribute("user_id"));
                 pl.setActual_name(request.getParameterValues("Name")[0]);
@@ -133,13 +133,17 @@ public class ControllServlet extends HttpServlet
                 if (pl.getPassword().equals(request.getParameterValues("Password_old")[0]))
                 {
                     pl.setPassword(request.getParameterValues("Password_new")[0]);
+                    playerDao.update(pl);
+                    url = "/country";
                 }
                 else
                 {
                     request.setAttribute("wrong_pass", "Old password is wrong");
+                    request.setAttribute("country", request.getParameterValues("Country")[0]);
+                    request.setAttribute("name", request.getParameterValues("Name")[0]);
+                    request.setAttribute("email", request.getParameterValues("Email")[0]);
                     url = "/WEB-INF/view/changeInfo.jsp";
                 }
-                playerDao.update(pl);
             }
             else if (userPath.equals("/cancelChanges"))
             {
@@ -154,8 +158,12 @@ public class ControllServlet extends HttpServlet
 
         }
         catch (SQLException ex)
-        {
-            Logger.getLogger(ControllServlet.class.getName()).log(Level.SEVERE, null, ex);
+        {        
+            
+            request.setAttribute("error_text", ex.getMessage());
+            request.getRequestDispatcher("/WEB-INF/view/error.jsp").forward(request, response);
+            //response.getWriter().println("MySQL error: ");
+            //ex.printStackTrace(response.getWriter());
         }
         finally
         {
